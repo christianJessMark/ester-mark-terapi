@@ -1,5 +1,4 @@
-{{ define "main" }}
-{{ $p := .Params }}
+{{ define "main" }} {{ $p := .Params }}
 
 <nav id="navbar">
   <a href="#hero" class="nav-logo">Ester Mark Terapi</a>
@@ -36,7 +35,7 @@
     </div>
   </div>
   <div class="hero-img reveal">
-    <img src="/{{ $p.hero_photo }}" alt="Ester Mark, psykoterapeut" />
+    <img src="{{ $p.hero_photo | relURL }}" alt="Ester Mark, psykoterapeut" />
   </div>
 </section>
 
@@ -52,9 +51,21 @@
         <p>{{ $p.terapi_body_3 }}</p>
       </div>
       <div class="reveal">
-        <p style="font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-soft); margin-bottom:0.5rem;">Eksempler på temaer</p>
+        <p
+          style="
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-soft);
+            margin-bottom: 0.5rem;
+          "
+        >
+          Eksempler på temaer
+        </p>
         <ul class="tema-list">
-          {{ range $p.terapi_temaer }}<li>{{ . }}</li>{{ end }}
+          {{ range $p.terapi_temaer }}
+          <li>{{ . }}</li>
+          {{ end }}
         </ul>
       </div>
     </div>
@@ -72,14 +83,33 @@
       <p>{{ $p.parterapi_body_1 }}</p>
       <p>{{ $p.parterapi_body_2 }}</p>
       <p>{{ $p.parterapi_body_3 }}</p>
-      <a href="#kontakt" class="btn-primary" style="margin-top:1.5rem; display:inline-block;">Tag kontakt</a>
+      <a
+        href="#kontakt"
+        class="btn-primary"
+        style="margin-top: 1.5rem; display: inline-block"
+        >Tag kontakt</a
+      >
     </div>
     <div class="reveal">
-      <p style="font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-soft); margin-bottom:0.5rem;">Hvad parterapi kan hjælpe med</p>
+      <p
+        style="
+          font-size: 0.82rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--text-soft);
+          margin-bottom: 0.5rem;
+        "
+      >
+        Hvad parterapi kan hjælpe med
+      </p>
       <ul class="tema-list">
-        {{ range $p.parterapi_temaer }}<li>{{ . }}</li>{{ end }}
+        {{ range $p.parterapi_temaer }}
+        <li>{{ . }}</li>
+        {{ end }}
       </ul>
-      <blockquote style="margin-top:2rem; font-size:1.1rem;">{{ $p.parterapi_citat }}</blockquote>
+      <blockquote style="margin-top: 2rem; font-size: 1.1rem">
+        {{ $p.parterapi_citat }}
+      </blockquote>
     </div>
   </div>
 </section>
@@ -88,7 +118,7 @@
 <section id="om">
   <div class="inner">
     <div class="om-img reveal">
-      <img src="/{{ $p.om_photo }}" alt="Ester Mark" />
+      <img src="{{ $p.om_photo | relURL }}" alt="Ester Mark" />
     </div>
     <div class="reveal">
       <span class="section-label">{{ $p.om_label }}</span>
@@ -121,9 +151,12 @@
     <div class="policy-box reveal">
       <h3>Aflysningspolitik</h3>
       <p>{{ $p.afbud_tekst | markdownify }}</p>
-      <p style="margin-top:0.8rem;">{{ $p.betaling_tekst }}</p>
+      <p style="margin-top: 0.8rem">{{ $p.betaling_tekst }}</p>
     </div>
-    <div class="policy-box reveal" style="margin-top:1.2rem; border-left-color: var(--accent);">
+    <div
+      class="policy-box reveal"
+      style="margin-top: 1.2rem; border-left-color: var(--accent)"
+    >
       <h3>Online terapi</h3>
       <p>{{ $p.online_tekst }}</p>
     </div>
@@ -152,57 +185,100 @@
       <form class="contact-form" id="contactForm">
         <input type="text" name="navn" placeholder="Dit navn" required />
         <input type="email" name="email" placeholder="Din email" required />
-        <input type="text" name="emne" placeholder="Hvad handler det om? (valgfrit)" />
-        <textarea name="besked" placeholder="Skriv lidt om, hvad du søger…"></textarea>
+        <input
+          type="text"
+          name="emne"
+          placeholder="Hvad handler det om? (valgfrit)"
+        />
+        <textarea
+          name="besked"
+          placeholder="Skriv lidt om, hvad du søger…"
+        ></textarea>
         <button type="submit" class="btn-send">Send besked</button>
-        <div class="form-success" id="formSuccess">Tak for din besked! Jeg vender tilbage hurtigst muligt.</div>
-        <div class="form-error" id="formError">Der skete desværre en fejl. Prøv igen, eller skriv direkte til <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>.</div>
+        <div class="form-success" id="formSuccess">
+          Tak for din besked! Jeg vender tilbage hurtigst muligt.
+        </div>
+        <div class="form-error" id="formError">
+          Der skete desværre en fejl. Prøv igen, eller skriv direkte til
+          <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a
+          >.
+        </div>
       </form>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© {{ now.Year }} Ester Mark Terapi · Farum · <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></p>
+  <p>
+    © {{ now.Year }} Ester Mark Terapi · Farum ·
+    <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
+  </p>
 </footer>
 
 <script>
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 30);
-  }, { passive: true });
+  const navbar = document.getElementById("navbar");
+  window.addEventListener(
+    "scroll",
+    () => {
+      navbar.classList.toggle("scrolled", window.scrollY > 30);
+    },
+    { passive: true },
+  );
 
-  const ham = document.getElementById('hamburger');
-  const mob = document.getElementById('mobile-menu');
-  ham.addEventListener('click', () => mob.classList.toggle('open'));
-  function closeMob() { mob.classList.remove('open'); }
+  const ham = document.getElementById("hamburger");
+  const mob = document.getElementById("mobile-menu");
+  ham.addEventListener("click", () => mob.classList.toggle("open"));
+  function closeMob() {
+    mob.classList.remove("open");
+  }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  const FORMSPREE_ID = '{{ .Site.Params.formspree_id }}';
-  document.getElementById('contactForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector('.btn-send');
-    const success = document.getElementById('formSuccess');
-    const error = document.getElementById('formError');
-    if (!FORMSPREE_ID) { btn.disabled = true; success.style.display = 'block'; return; }
-    btn.disabled = true; btn.textContent = 'Sender…';
-    error.style.display = 'none';
-    try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' },
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          observer.unobserve(e.target);
+        }
       });
-      if (res.ok) { form.reset(); success.style.display = 'block'; }
-      else { throw new Error(); }
-    } catch {
-      btn.disabled = false; btn.textContent = 'Send besked'; error.style.display = 'block';
-    }
-  });
+    },
+    { threshold: 0.12 },
+  );
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+  const FORMSPREE_ID = "{{ .Site.Params.formspree_id }}";
+  document
+    .getElementById("contactForm")
+    .addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector(".btn-send");
+      const success = document.getElementById("formSuccess");
+      const error = document.getElementById("formError");
+      if (!FORMSPREE_ID) {
+        btn.disabled = true;
+        success.style.display = "block";
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = "Sender…";
+      error.style.display = "none";
+      try {
+        const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+        if (res.ok) {
+          form.reset();
+          success.style.display = "block";
+        } else {
+          throw new Error();
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = "Send besked";
+        error.style.display = "block";
+      }
+    });
 </script>
 {{ end }}

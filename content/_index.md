@@ -56,7 +56,7 @@ om_body_1: "Jeg hedder Ester Mark og er uddannet psykoterapeut fra SEOP — Skol
 om_body_2: "Jeg har arbejdet med både unge, voksne og ældre og er interesseret i det hele menneske — uanset hvad du bærer med dig. Jeg møder dig med nysgerrighed, varme og uden forudindtagethed."
 om_body_3: "Mit mål er, at du går herfra med lidt mere luft og lidt mere kontakt til dig selv og din situation."
 om_badge: "SEOP-uddannet"
-om_photo: "uploads/photo-1776791532398.jpg"
+om_photo: "uploads/ester_mark.jpg"
 
 # ============================================================
 # PRISER
