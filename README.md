@@ -7,12 +7,14 @@ Hugo-baseret hjemmeside med Decap CMS til indholdsstyring.
 ## Opsætning (gøres én gang)
 
 ### 1. Opret GitHub-repo
+
 1. Gå til github.com → "New repository"
 2. Navn: `ester-mark-terapi`
 3. Sæt til **Public** (påkrævet for gratis GitHub Pages)
 4. Klik "Create repository"
 
 ### 2. Upload filerne
+
 ```bash
 git init
 git add .
@@ -22,36 +24,45 @@ git push -u origin main
 ```
 
 ### 3. Ret config-filen
+
 I `static/admin/config.yml` — ret denne linje:
+
 ```yaml
 repo: DIT-GITHUB-BRUGERNAVN/ester-mark-terapi
 ```
 
 ### 4. Slå GitHub Pages til
+
 1. Repo → Settings → Pages
 2. Source: **GitHub Actions**
 3. Gem
 
-Sitet er nu live på: `https://DIT-BRUGERNAVN.github.io/ester-mark-terapi/`
+Sitet er nu live på: `https://christianJessMark.github.io/ester-mark-terapi/`
 
 ### 5. Peg domæne på GitHub Pages
+
 I dit domænes DNS-indstillinger:
+
 ```
 Type: CNAME
 Navn: www
 Værdi: DIT-BRUGERNAVN.github.io
 ```
+
 Tilføj også i Settings → Pages → Custom domain: `estermarkterapi.dk`
 
 ### 6. Sæt kontaktformular op (Formspree)
+
 1. Gå til formspree.io → opret gratis konto
 2. Opret nyt form → kopiér form-ID (fx `xpzgkqrw`)
 3. Indsæt i `hugo.toml`:
+
 ```toml
 formspree_id = "xpzgkqrw"
 ```
 
 ### 7. Sæt Decap CMS op (din kones editor)
+
 1. Gå til github.com → Settings → Developer settings → OAuth Apps → New
 2. Application name: `Decap CMS`
 3. Homepage URL: `https://estermarkterapi.dk`
