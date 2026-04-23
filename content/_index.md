@@ -7,7 +7,7 @@ hero_heading: "Et sted at finde forbindelsen til dig selv"
 hero_sub: "Jeg tilbyder eksistentiel og oplevelsesorienteret terapi, hvor vi arbejder i nuet og skaber sammenhæng mellem dine tanker, dine følelser og din krop."
 hero_btn_primary: "Book en samtale"
 hero_btn_ghost: "Læs mere"
-hero_photo: "uploads/photo-1776791532398.jpg"
+hero_photo: "uploads/ester_mark.jpg"
 
 # ============================================================
 # TERAPI
