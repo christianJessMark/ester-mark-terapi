@@ -1,0 +1,63 @@
+backend:
+  name: github
+  repo: DIT-GITHUB-BRUGERNAVN/ester-mark-terapi  # <-- ret dette
+  branch: main
+
+media_folder: static/uploads
+public_folder: /uploads
+
+collections:
+  - name: "forside"
+    label: "Forside"
+    files:
+      - name: "forside"
+        label: "Forsideindhold"
+        file: "content/_index.md"
+        fields:
+
+          # HERO
+          - { label: "Hero: Overskrift", name: "hero_heading", widget: "string" }
+          - { label: "Hero: Undertekst", name: "hero_sub", widget: "text" }
+          - { label: "Hero: Foto", name: "hero_photo", widget: "image" }
+
+          # TERAPI
+          - { label: "Terapi: Overskrift", name: "terapi_heading", widget: "string" }
+          - { label: "Terapi: Tekst 1", name: "terapi_body_1", widget: "text" }
+          - { label: "Terapi: Tekst 2", name: "terapi_body_2", widget: "text" }
+          - { label: "Terapi: Tekst 3", name: "terapi_body_3", widget: "text" }
+          - label: "Terapi: Temaer"
+            name: "terapi_temaer"
+            widget: "list"
+            field: { label: "Tema", name: "tema", widget: "string" }
+          - { label: "Terapi: Citat", name: "terapi_citat", widget: "text" }
+
+          # PARTERAPI
+          - { label: "Parterapi: Overskrift", name: "parterapi_heading", widget: "string" }
+          - { label: "Parterapi: Tekst 1", name: "parterapi_body_1", widget: "text" }
+          - { label: "Parterapi: Tekst 2", name: "parterapi_body_2", widget: "text" }
+          - { label: "Parterapi: Tekst 3", name: "parterapi_body_3", widget: "text" }
+          - label: "Parterapi: Temaer"
+            name: "parterapi_temaer"
+            widget: "list"
+            field: { label: "Tema", name: "tema", widget: "string" }
+          - { label: "Parterapi: Citat", name: "parterapi_citat", widget: "text" }
+
+          # OM ESTER
+          - { label: "Om Ester: Overskrift", name: "om_heading", widget: "string" }
+          - { label: "Om Ester: Tekst 1", name: "om_body_1", widget: "text" }
+          - { label: "Om Ester: Tekst 2", name: "om_body_2", widget: "text" }
+          - { label: "Om Ester: Tekst 3", name: "om_body_3", widget: "text" }
+          - { label: "Om Ester: Foto", name: "om_photo", widget: "image" }
+
+          # PRISER
+          - { label: "Individuel terapi: Pris", name: "pris_individuel_beloeb", widget: "string" }
+          - { label: "Individuel terapi: Note", name: "pris_individuel_note", widget: "string" }
+          - { label: "Parterapi: Pris", name: "pris_par_beloeb", widget: "string" }
+          - { label: "Parterapi: Note", name: "pris_par_note", widget: "string" }
+          - { label: "Aflysningspolitik", name: "afbud_tekst", widget: "text" }
+          - { label: "Betalingsinfo", name: "betaling_tekst", widget: "text" }
+          - { label: "Online terapi-tekst", name: "online_tekst", widget: "text" }
+
+          # KONTAKT
+          - { label: "Kontakt: Brødtekst", name: "kontakt_body", widget: "text" }
+          - { label: "Kontakt: Lokation", name: "kontakt_lokation", widget: "string" }

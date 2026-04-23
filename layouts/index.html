@@ -1,0 +1,208 @@
+{{ define "main" }}
+{{ $p := .Params }}
+
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Ester Mark Terapi</a>
+  <ul class="nav-links">
+    <li><a href="#terapi">Terapi</a></li>
+    <li><a href="#parterapi">Parterapi</a></li>
+    <li><a href="#om">Om Ester</a></li>
+    <li><a href="#priser">Priser</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#kontakt" class="nav-book">Book tid</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#terapi" onclick="closeMob()">Terapi</a>
+  <a href="#parterapi" onclick="closeMob()">Parterapi</a>
+  <a href="#om" onclick="closeMob()">Om Ester</a>
+  <a href="#priser" onclick="closeMob()">Priser</a>
+  <a href="#kontakt" onclick="closeMob()" class="mob-book">Book tid</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text reveal">
+    <span class="section-label">{{ $p.hero_label }}</span>
+    <h1>{{ $p.hero_heading }}</h1>
+    <p class="hero-sub">{{ $p.hero_sub }}</p>
+    <div class="hero-cta">
+      <a href="#kontakt" class="btn-primary">{{ $p.hero_btn_primary }}</a>
+      <a href="#terapi" class="btn-ghost">{{ $p.hero_btn_ghost }}</a>
+    </div>
+  </div>
+  <div class="hero-img reveal">
+    <img src="/{{ $p.hero_photo }}" alt="Ester Mark, psykoterapeut" />
+  </div>
+</section>
+
+<!-- TERAPI -->
+<section id="terapi">
+  <div class="inner">
+    <span class="section-label reveal">{{ $p.terapi_label }}</span>
+    <h2 class="reveal">{{ $p.terapi_heading }}</h2>
+    <div class="terapi-grid">
+      <div class="reveal">
+        <p>{{ $p.terapi_body_1 }}</p>
+        <p>{{ $p.terapi_body_2 }}</p>
+        <p>{{ $p.terapi_body_3 }}</p>
+      </div>
+      <div class="reveal">
+        <p style="font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-soft); margin-bottom:0.5rem;">Eksempler på temaer</p>
+        <ul class="tema-list">
+          {{ range $p.terapi_temaer }}<li>{{ . }}</li>{{ end }}
+        </ul>
+      </div>
+    </div>
+    <div class="divider reveal"></div>
+    <blockquote class="reveal">{{ $p.terapi_citat }}</blockquote>
+  </div>
+</section>
+
+<!-- PARTERAPI -->
+<section id="parterapi">
+  <div class="inner">
+    <div class="reveal">
+      <span class="section-label">{{ $p.parterapi_label }}</span>
+      <h2>{{ $p.parterapi_heading }}</h2>
+      <p>{{ $p.parterapi_body_1 }}</p>
+      <p>{{ $p.parterapi_body_2 }}</p>
+      <p>{{ $p.parterapi_body_3 }}</p>
+      <a href="#kontakt" class="btn-primary" style="margin-top:1.5rem; display:inline-block;">Tag kontakt</a>
+    </div>
+    <div class="reveal">
+      <p style="font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-soft); margin-bottom:0.5rem;">Hvad parterapi kan hjælpe med</p>
+      <ul class="tema-list">
+        {{ range $p.parterapi_temaer }}<li>{{ . }}</li>{{ end }}
+      </ul>
+      <blockquote style="margin-top:2rem; font-size:1.1rem;">{{ $p.parterapi_citat }}</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- OM ESTER -->
+<section id="om">
+  <div class="inner">
+    <div class="om-img reveal">
+      <img src="/{{ $p.om_photo }}" alt="Ester Mark" />
+    </div>
+    <div class="reveal">
+      <span class="section-label">{{ $p.om_label }}</span>
+      <h2>{{ $p.om_heading }}</h2>
+      <p>{{ $p.om_body_1 }}</p>
+      <p>{{ $p.om_body_2 }}</p>
+      <p>{{ $p.om_body_3 }}</p>
+      <span class="badge">{{ $p.om_badge }}</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRISER -->
+<section id="priser">
+  <div class="inner">
+    <span class="section-label reveal">{{ $p.priser_label }}</span>
+    <h2 class="reveal">{{ $p.priser_heading }}</h2>
+    <div class="price-cards">
+      <div class="price-card reveal">
+        <h3>{{ $p.pris_individuel_navn }}</h3>
+        <div class="price-amount">{{ $p.pris_individuel_beloeb }}</div>
+        <p class="price-note">{{ $p.pris_individuel_note }}</p>
+      </div>
+      <div class="price-card reveal">
+        <h3>{{ $p.pris_par_navn }}</h3>
+        <div class="price-amount">{{ $p.pris_par_beloeb }}</div>
+        <p class="price-note">{{ $p.pris_par_note }}</p>
+      </div>
+    </div>
+    <div class="policy-box reveal">
+      <h3>Aflysningspolitik</h3>
+      <p>{{ $p.afbud_tekst | markdownify }}</p>
+      <p style="margin-top:0.8rem;">{{ $p.betaling_tekst }}</p>
+    </div>
+    <div class="policy-box reveal" style="margin-top:1.2rem; border-left-color: var(--accent);">
+      <h3>Online terapi</h3>
+      <p>{{ $p.online_tekst }}</p>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="inner">
+    <div class="reveal">
+      <span class="section-label">{{ $p.kontakt_label }}</span>
+      <h2>{{ $p.kontakt_heading }}</h2>
+      <p>{{ $p.kontakt_body }}</p>
+      <div class="contact-detail">
+        <div class="contact-item">
+          <span>Email</span>
+          <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
+        </div>
+        <div class="contact-item">
+          <span>Lokation</span>
+          <span>{{ $p.kontakt_lokation }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form class="contact-form" id="contactForm">
+        <input type="text" name="navn" placeholder="Dit navn" required />
+        <input type="email" name="email" placeholder="Din email" required />
+        <input type="text" name="emne" placeholder="Hvad handler det om? (valgfrit)" />
+        <textarea name="besked" placeholder="Skriv lidt om, hvad du søger…"></textarea>
+        <button type="submit" class="btn-send">Send besked</button>
+        <div class="form-success" id="formSuccess">Tak for din besked! Jeg vender tilbage hurtigst muligt.</div>
+        <div class="form-error" id="formError">Der skete desværre en fejl. Prøv igen, eller skriv direkte til <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© {{ now.Year }} Ester Mark Terapi · Farum · <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></p>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobile-menu');
+  ham.addEventListener('click', () => mob.classList.toggle('open'));
+  function closeMob() { mob.classList.remove('open'); }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const FORMSPREE_ID = '{{ .Site.Params.formspree_id }}';
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.btn-send');
+    const success = document.getElementById('formSuccess');
+    const error = document.getElementById('formError');
+    if (!FORMSPREE_ID) { btn.disabled = true; success.style.display = 'block'; return; }
+    btn.disabled = true; btn.textContent = 'Sender…';
+    error.style.display = 'none';
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' },
+      });
+      if (res.ok) { form.reset(); success.style.display = 'block'; }
+      else { throw new Error(); }
+    } catch {
+      btn.disabled = false; btn.textContent = 'Send besked'; error.style.display = 'block';
+    }
+  });
+</script>
+{{ end }}
