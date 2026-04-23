@@ -1,7 +1,6 @@
 baseURL = "https://estermarkterapi.dk/"
 languageCode = "da"
 title = "Ester Mark Terapi"
-theme = ""
 
 [params]
   description = "Eksistentiel og oplevelsesorienteret psykoterapi og parterapi med Ester Mark. Farum eller online."
