@@ -19,7 +19,7 @@ Hugo-baseret hjemmeside med Decap CMS til indholdsstyring.
 git init
 git add .
 git commit -m "Første upload"
-git remote add origin https://github.com/DIT-BRUGERNAVN/ester-mark-terapi.git
+git remote add origin https://github.com/christianJessMark/ester-mark-terapi.git
 git push -u origin main
 ```
 
