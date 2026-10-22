@@ -3,10 +3,12 @@
 <nav id="navbar">
   <a href="#hero" class="nav-logo">Ester Mark Terapi</a>
   <ul class="nav-links">
-    <li><a href="#terapi">Terapi</a></li>
+    <li><a href="#terapi">Individuel terapi</a></li>
     <li><a href="#parterapi">Parterapi</a></li>
-    <li><a href="#om">Om Ester</a></li>
+    <li><a href="#om">Om mig</a></li>
     <li><a href="#priser">Priser</a></li>
+    <li><a href="#online">Online</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
   </ul>
   <a href="#kontakt" class="nav-book">Book tid</a>
@@ -16,10 +18,13 @@
 </nav>
 
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#terapi" onclick="closeMob()">Terapi</a>
+  <a href="#terapi" onclick="closeMob()">Individuel terapi</a>
   <a href="#parterapi" onclick="closeMob()">Parterapi</a>
-  <a href="#om" onclick="closeMob()">Om Ester</a>
+  <a href="#om" onclick="closeMob()">Om mig</a>
   <a href="#priser" onclick="closeMob()">Priser</a>
+  <a href="#online" onclick="closeMob()">Onlineterapi</a>
+  <a href="#faq" onclick="closeMob()">Ofte stillede spørgsmål</a>
+  <a href="#kontakt" onclick="closeMob()">Kontakt</a>
   <a href="#kontakt" onclick="closeMob()" class="mob-book">Book tid</a>
 </div>
 
@@ -28,6 +33,7 @@
   <div class="hero-text reveal">
     <span class="section-label">{{ $p.hero_label }}</span>
     <h1>{{ $p.hero_heading }}</h1>
+    <p class="hero-lead">{{ $p.hero_lead }}</p>
     <p class="hero-sub">{{ $p.hero_sub }}</p>
     <div class="hero-cta">
       <a href="#kontakt" class="btn-primary">{{ $p.hero_btn_primary }}</a>
@@ -39,94 +45,83 @@
   </div>
 </section>
 
-<!-- TERAPI -->
-<section id="terapi">
+<!-- INDIVIDUEL TERAPI -->
+<section id="terapi" class="alt">
   <div class="inner">
     <span class="section-label reveal">{{ $p.terapi_label }}</span>
     <h2 class="reveal">{{ $p.terapi_heading }}</h2>
-    <div class="terapi-grid">
-      <div class="reveal">
-        <p>{{ $p.terapi_body_1 }}</p>
-        <p>{{ $p.terapi_body_2 }}</p>
-        <p>{{ $p.terapi_body_3 }}</p>
-      </div>
-      <div class="reveal">
-        <p
-          style="
-            font-size: 0.82rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-soft);
-            margin-bottom: 0.5rem;
-          "
-        >
-          Eksempler på temaer
-        </p>
-        <ul class="tema-list">
-          {{ range $p.terapi_temaer }}
-          <li>{{ . }}</li>
-          {{ end }}
-        </ul>
-      </div>
+    <div class="prose reveal">{{ $p.terapi_intro | markdownify }}</div>
+    <div class="tema-box reveal">
+      <p class="tema-title">{{ $p.terapi_temaer_titel }}:</p>
+      <ul class="tema-list">
+        {{ range $p.terapi_temaer }}
+        <li>{{ . }}</li>
+        {{ end }}
+      </ul>
     </div>
-    <div class="divider reveal"></div>
-    <blockquote class="reveal">{{ $p.terapi_citat }}</blockquote>
+    <div class="prose reveal">{{ $p.terapi_outro | markdownify }}</div>
+    {{ range $p.terapi_blokke }}
+    <div class="sub-block reveal">
+      <h3>{{ .titel }}</h3>
+      <div class="prose">{{ .tekst | markdownify }}</div>
+    </div>
+    {{ end }}
   </div>
 </section>
 
 <!-- PARTERAPI -->
 <section id="parterapi">
   <div class="inner">
-    <div class="reveal">
-      <span class="section-label">{{ $p.parterapi_label }}</span>
-      <h2>{{ $p.parterapi_heading }}</h2>
-      <p>{{ $p.parterapi_body_1 }}</p>
-      <p>{{ $p.parterapi_body_2 }}</p>
-      <p>{{ $p.parterapi_body_3 }}</p>
-      <a
-        href="#kontakt"
-        class="btn-primary"
-        style="margin-top: 1.5rem; display: inline-block"
-        >Tag kontakt</a
-      >
-    </div>
-    <div class="reveal">
-      <p
-        style="
-          font-size: 0.82rem;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: var(--text-soft);
-          margin-bottom: 0.5rem;
-        "
-      >
-        Hvad parterapi kan hjælpe med
-      </p>
+    <span class="section-label reveal">{{ $p.parterapi_label }}</span>
+    <h2 class="reveal">{{ $p.parterapi_heading }}</h2>
+    <div class="prose reveal">{{ $p.parterapi_intro | markdownify }}</div>
+    <div class="tema-box reveal">
+      <p class="tema-title">{{ $p.parterapi_temaer_titel }}:</p>
       <ul class="tema-list">
         {{ range $p.parterapi_temaer }}
         <li>{{ . }}</li>
         {{ end }}
       </ul>
-      <blockquote style="margin-top: 2rem; font-size: 1.1rem">
-        {{ $p.parterapi_citat }}
-      </blockquote>
     </div>
+    <div class="prose reveal">{{ $p.parterapi_outro | markdownify }}</div>
+    {{ range $p.parterapi_blokke }}
+    <div class="sub-block reveal">
+      <h3>{{ .titel }}</h3>
+      <div class="prose">{{ .tekst | markdownify }}</div>
+    </div>
+    {{ end }}
+    <a href="#kontakt" class="btn-primary btn-spaced">Tag kontakt</a>
   </div>
 </section>
 
-<!-- OM ESTER -->
-<section id="om">
+<!-- OM MIG -->
+<section id="om" class="alt">
   <div class="inner">
-    <div class="om-img reveal">
-      <img src="{{ $p.om_photo | relURL }}" alt="Ester Mark" />
+    <div class="om-top">
+      <div class="om-img reveal">
+        <img src="{{ $p.om_photo | relURL }}" alt="Ester Mark" />
+      </div>
+      <div class="reveal">
+        <span class="section-label">{{ $p.om_label }}</span>
+        <h2>{{ $p.om_heading }}</h2>
+        <div class="prose">{{ $p.om_tekst | markdownify }}</div>
+        <span class="badge">{{ $p.om_badge }}</span>
+      </div>
     </div>
-    <div class="reveal">
-      <span class="section-label">{{ $p.om_label }}</span>
-      <h2>{{ $p.om_heading }}</h2>
-      <p>{{ $p.om_body_1 }}</p>
-      <p>{{ $p.om_body_2 }}</p>
-      <p>{{ $p.om_body_3 }}</p>
-      <span class="badge">{{ $p.om_badge }}</span>
+    <div class="sub-block reveal">
+      <h3>{{ $p.udd_heading }}</h3>
+      <div class="prose">{{ $p.udd_tekst | markdownify }}</div>
+    </div>
+    <div class="sub-block reveal" id="tilgang">
+      <h3>{{ $p.tilgang_heading }}</h3>
+      <div class="prose">{{ $p.tilgang_tekst | markdownify }}</div>
+    </div>
+    <div class="sub-block reveal">
+      <h3>{{ $p.klient_heading }}</h3>
+      <blockquote>
+        “{{ $p.klient_citat }}”
+        <cite>– {{ $p.klient_navn }}</cite>
+      </blockquote>
     </div>
   </div>
 </section>
@@ -134,31 +129,68 @@
 <!-- PRISER -->
 <section id="priser">
   <div class="inner">
-    <span class="section-label reveal">{{ $p.priser_label }}</span>
     <h2 class="reveal">{{ $p.priser_heading }}</h2>
+    <p class="reveal">{{ $p.priser_intro }}</p>
     <div class="price-cards">
       <div class="price-card reveal">
         <h3>{{ $p.pris_individuel_navn }}</h3>
         <div class="price-amount">{{ $p.pris_individuel_beloeb }}</div>
-        <p class="price-note">{{ $p.pris_individuel_note }}</p>
+        <p class="price-note">{{ $p.pris_individuel_varighed }}</p>
       </div>
       <div class="price-card reveal">
         <h3>{{ $p.pris_par_navn }}</h3>
-        <div class="price-amount">{{ $p.pris_par_beloeb }}</div>
-        <p class="price-note">{{ $p.pris_par_note }}</p>
+        <p class="price-note">{{ $p.pris_par_intro }}</p>
+        {{ range $p.pris_par_linjer }}
+        <div class="price-row">
+          <div>
+            <strong>{{ .navn }}</strong>
+            <span class="price-note">{{ .varighed }}</span>
+          </div>
+          <div class="price-row-amount">{{ .beloeb }}</div>
+        </div>
+        {{ end }}
       </div>
     </div>
-    <div class="policy-box reveal">
-      <h3>Aflysningspolitik</h3>
-      <p>{{ $p.afbud_tekst | markdownify }}</p>
-      <p style="margin-top: 0.8rem">{{ $p.betaling_tekst }}</p>
+  </div>
+</section>
+
+<!-- ONLINETERAPI -->
+<section id="online" class="alt">
+  <div class="inner">
+    <h2 class="reveal">{{ $p.online_heading }}</h2>
+    <div class="prose reveal">{{ $p.online_tekst | markdownify }}</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="inner">
+    <h2 class="reveal">{{ $p.faq_heading }}</h2>
+    {{ range $p.faq_grupper }}
+    <div class="faq-group reveal">
+      <h3>{{ .titel }}</h3>
+      {{ range .sporgsmaal }}
+      <details class="faq-item">
+        <summary>{{ .q }}</summary>
+        <p>{{ .a }}</p>
+      </details>
+      {{ end }}
     </div>
-    <div
-      class="policy-box reveal"
-      style="margin-top: 1.2rem; border-left-color: var(--accent)"
-    >
-      <h3>Online terapi</h3>
-      <p>{{ $p.online_tekst }}</p>
+    {{ end }}
+  </div>
+</section>
+
+<!-- BETALING OG AFBUD -->
+<section id="betaling" class="alt">
+  <div class="inner">
+    <h2 class="reveal">{{ $p.betaling_heading }}</h2>
+    <div class="policy-box reveal">
+      <h3>Betaling</h3>
+      <p>{{ $p.betaling_tekst }}</p>
+    </div>
+    <div class="policy-box reveal">
+      <h3>Afbud</h3>
+      <p>{{ $p.afbud_tekst }}</p>
     </div>
   </div>
 </section>
@@ -167,17 +199,22 @@
 <section id="kontakt">
   <div class="inner">
     <div class="reveal">
-      <span class="section-label">{{ $p.kontakt_label }}</span>
       <h2>{{ $p.kontakt_heading }}</h2>
-      <p>{{ $p.kontakt_body }}</p>
+      <div class="prose">{{ $p.kontakt_tekst | markdownify }}</div>
       <div class="contact-detail">
         <div class="contact-item">
-          <span>Email</span>
+          <span>E-mail</span>
           <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
         </div>
         <div class="contact-item">
-          <span>Lokation</span>
-          <span>{{ $p.kontakt_lokation }}</span>
+          <span>Telefon</span>
+          <a href="tel:+45{{ replace $p.kontakt_telefon " " "" }}"
+            >{{ $p.kontakt_telefon }}</a
+          >
+        </div>
+        <div class="contact-item">
+          <span>{{ $p.kontakt_samtaler_titel }}</span>
+          <div class="contact-text">{{ $p.kontakt_samtaler | markdownify }}</div>
         </div>
       </div>
     </div>
@@ -224,6 +261,31 @@
     },
     { passive: true },
   );
+
+  const sections = [...document.querySelectorAll("section[id]")];
+  const menuLinks = [...document.querySelectorAll(".nav-links a, .mobile-menu a")];
+  function updateActiveLink() {
+    const atBottom =
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 2;
+    let current = atBottom ? sections[sections.length - 1] : null;
+    if (!current) {
+      for (const s of sections) {
+        if (s.getBoundingClientRect().top <= window.innerHeight * 0.35) {
+          current = s;
+        }
+      }
+    }
+    const id = current ? current.id : "";
+    menuLinks.forEach((a) => {
+      const on = a.getAttribute("href") === "#" + id && !a.classList.contains("nav-book") && !a.classList.contains("mob-book");
+      a.classList.toggle("active", on);
+      if (on) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+  }
+  window.addEventListener("scroll", updateActiveLink, { passive: true });
+  updateActiveLink();
 
   const ham = document.getElementById("hamburger");
   const mob = document.getElementById("mobile-menu");
