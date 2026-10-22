@@ -2,6 +2,7 @@ backend:
   name: github
   repo: christianJessMark/ester-mark-terapi
   branch: main
+  site_domain: estermarkterapi.netlify.app
 
 media_folder: static/uploads
 public_folder: /uploads
