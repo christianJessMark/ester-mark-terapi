@@ -34,9 +34,9 @@ Kun emails der er godkendt i Cloudflare Access kan logge ind. For at tilføje en
 
 Al tekst på sitet ligger i én fil: `content/_index.md`
 
-Ret direkte i filen på GitHub, eller brug Decap CMS på `https://estermarkterapi.dk/admin/` (kræver opsætning — se nedenfor).
+Ret direkte i filen på GitHub, eller brug Sveltia CMS på `https://estermarkterapi.dk/admin/` (kræver opsætning — se nedenfor).
 
-Når du gemmer, opretter Decap CMS et commit på GitHub. GitHub Actions bygger og deployer derefter sitet automatisk.
+Når du gemmer, opretter Sveltia CMS et commit på GitHub. GitHub Actions bygger og deployer derefter sitet automatisk.
 
 ---
 
@@ -54,7 +54,7 @@ ester-mark/
 │   ├── uploads/           ← Billeder
 │   ├── favicon.svg        ← Favicon
 │   └── admin/
-│       ├── index.html     ← Decap CMS
+│       ├── index.html     ← Sveltia CMS
 │       └── config.yml     ← Definerer hvad der kan redigeres
 ├── wrangler.jsonc         ← Cloudflare Workers konfiguration
 └── hugo.toml              ← Hugo konfiguration
@@ -110,27 +110,20 @@ tara.ns.cloudflare.com
 formspree_id = "DIT-FORM-ID"
 ```
 
-### 6. Decap CMS (redigering af indhold)
+### 6. Sveltia CMS (redigering af indhold)
 
-Decap CMS bruger GitHub til at gemme ændringer. Netlify bruges kun som OAuth-loginservice; sitet hostes fortsat på GitHub Pages. Brugeren, der skal redigere indhold, skal have skriveadgang til GitHub-repoet og være godkendt i Cloudflare Access.
+Sitet bruger Sveltia CMS (en direkte afløser for Decap CMS, samme `config.yml`) på `/admin/`. Det gemmer ændringer som commits direkte på GitHub og kræver ingen OAuth-server eller Netlify. Decap CMS blev opgivet, fordi login-popuppen med Netlify OAuth ikke blev færdig (popup hang på "Authorized with Netlify").
 
-1. Opret en OAuth App på GitHub under **Settings → Developer settings → OAuth Apps → New OAuth App**.
-2. Udfyld:
-   - **Application name**: `Decap CMS`
-   - **Homepage URL**: `https://estermarkterapi.dk`
-   - **Authorization callback URL**: `https://api.netlify.com/auth/done`
-3. Opret appen, kopiér **Client ID**, og opret en **Client Secret**. Gem den sikkert; den kan ikke vises igen.
-4. Åbn Netlify-projektet, der skal bruges til OAuth-konfigurationen. Netlify-projektet behøver ikke hoste hjemmesiden.
-5. Gå til **Project configuration → Security → OAuth**.
-6. Under **Authentication Providers**, vælg **Install Provider → GitHub**, og indsæt Client ID og Client Secret. Gem.
-7. Giv redaktøren skriveadgang til GitHub-repoet (`christianJessMark/ester-mark-terapi`).
-
-Netlifys menuplacering kan ændre sig. Den aktuelle vejledning findes i [Netlifys dokumentation om OAuth-provider tokens](https://docs.netlify.com/manage/security/secure-access-to-sites/oauth-provider-tokens/).
+1. Giv redaktøren skriveadgang til GitHub-repoet (`christianJessMark/ester-mark-terapi`) under **Settings → Collaborators**.
+2. Redaktøren opretter et **fine-grained personal access token** på GitHub under **Settings → Developer settings → Personal access tokens → Fine-grained tokens**:
+   - **Repository access**: Only select repositories → `ester-mark-terapi`
+   - **Permissions → Contents**: Read and write
+3. Redaktøren er også godkendt i Cloudflare Access (se ovenfor).
 
 ### Daglig brug
 
 1. Gå til `https://estermarkterapi.dk/admin/`.
 2. Log ind gennem Cloudflare Access, hvis du bliver bedt om det.
-3. Vælg **Login with GitHub**, og godkend adgang.
+3. Vælg **Sign in with token** (eller GitHub-login), og indsæt tokenet.
 4. Klik **Forsideindhold**, ret teksten, og klik **Gem**.
 5. GitHub Actions bygger og udgiver den opdaterede hjemmeside automatisk.
