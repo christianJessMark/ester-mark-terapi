@@ -324,22 +324,25 @@
       btn.disabled = true;
       btn.textContent = "Sender…";
       error.style.display = "none";
+      success.style.display = "none";
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 15000);
       try {
         const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
           method: "POST",
           body: new FormData(form),
           headers: { Accept: "application/json" },
+          signal: controller.signal,
         });
-        if (res.ok) {
-          form.reset();
-          success.style.display = "block";
-        } else {
-          throw new Error();
-        }
+        if (!res.ok) throw new Error();
+        form.reset();
+        success.style.display = "block";
       } catch {
+        error.style.display = "block";
+      } finally {
+        clearTimeout(timeout);
         btn.disabled = false;
         btn.textContent = "Send besked";
-        error.style.display = "block";
       }
     });
 </script>
